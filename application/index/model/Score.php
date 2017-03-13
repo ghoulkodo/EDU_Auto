@@ -1,9 +1,9 @@
 <?php
-namespace app\common;
+namespace app\index\model;
 
 use think\Model;
 
-class Common extends Model
+class Score extends Model
 {
     protected function initialize()
     {
