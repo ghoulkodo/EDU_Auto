@@ -2,7 +2,9 @@
 namespace app\index\controller;
 
 
-class Index extends \think\Controller
+use think\Controller;
+
+class Index extends Controller
 {
     public function index()
     {
@@ -19,3 +21,4 @@ class Index extends \think\Controller
         return $this->fetch('signup');
     }
 }
+
