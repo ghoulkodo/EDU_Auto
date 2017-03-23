@@ -27,11 +27,6 @@ class Res extends Model
         return $res->path;
     }
 
-    public function check()
-    {
-
-    }
-
     public function up()
     {
 

@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/stu">WTF University</a>
+                <a class="navbar-brand" href="http://{$Think.server.server_name}/stu">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -133,14 +133,14 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="http://fuck.io/stu/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                            <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="http://fuck.io/stu/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                            <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 退出</a>
+                            <a href="/logout"><i class="fa fa-fw fa-power-off"></i> 退出</a>
                         </li>
                     </ul>
                 </li>
@@ -149,36 +149,25 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/stu"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://{$Think.server.server_name}/stu/index"><i class="fa fa-fw fa-dashboard"></i> 我的首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://{$Think.server.server_name}/stu/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://{$Think.server.server_name}/stu/tables"><i class="fa fa-fw fa-table"></i> 查看通知</a>
+                    </li>
+                    <li class="active">
+                        <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://{$Think.server.server_name}/stu/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> 学生请假</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-table"></i> 当前作业</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="http://fuck.io/stu/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://{$Think.server.server_name}/stu/res"><i class="fa fa-fw fa-table"></i> 查看课件资源</a>
                     </li>
                 </ul>
             </div>
@@ -204,6 +193,16 @@
                             </li>
                         </ol>
                     </div>
+                    <div class="col-sm-12">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">tips:</h3>
+                            </div>
+                            <div class="panel-body">
+                                如果您的身份证与真实姓名等无法修改的资料有误，请您向班主任提交修改，我们将在9月21号统一修改。
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.row -->
 
@@ -211,55 +210,41 @@
                     <div class="col-lg-3">
                         <h2></h2>
                         <div class="table-responsive">
-                            <img src="/static/image/ROTK.jpg" width="" height="100%">
+                            <img src="http://{$Think.server.server_name}/{$userinfo['head_path']}" width="100%" height="100%">
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <h2>{$_SESSION['think']['uname']}</h2>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                               
+                            <table class="table table-hover table-striped">                             
                                 <tbody>
                                     <tr>
                                         <td>身份证</td>
-                                        <td>{$userinfo->id_card}</td>
-                                        <td>教师证</td>
-                                        <td>{$userinfo->cid}</td>
+                                        <td>{$userinfo['id_card']}</td>
+                                        <td>真实姓名</td>
+                                        <td>{$userinfo['true_name']}</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
-                                        <td>{$userinfo->phone}</td>
-                                        <td>qq号</td>
-                                        <td>{$userinfo->qq}</td>
+                                        <td>{$userinfo['phone']}</td>
+                                        <td>Email</td>
+                                        <td>{$userinfo['email']}</td>
                                     </tr>
                                     <tr>
                                         <td>住址街道</td>
-                                        <td>{$userinfo->add}</td>
+                                        <td>{$userinfo['add']}</td>
                                         <td>详细地址</td>
-                                        <td>{$userinfo->dizhi}</td>
+                                        <td>{$userinfo['dizhi']}</td>
                                     </tr>
                                     <tr>
-                                        <td>学历</td>
-                                        <td>{$userinfo->xueli}</td>
-                                        <td>职称</td>
-                                        <td>{$userinfo->zhicheng}</td>
+                                        <td>所属院系</td>
+                                        <td>{$userinfo['yuanxi']}</td>
+                                        <td>科目</td>
+                                        <td>{$userinfo['kemu']}</td>
                                     </tr>
                                     <tr>
-                                        <td>毕业院校</td>
-                                        <td>{$userinfo->biye}</td>
-                                        <td>专业</td>
-                                        <td>{$userinfo->zhuanye}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>任职院系</td>
-                                        <td>{$userinfo->yuanxi}</td>
-                                        <td>执教科目</td>
-                                        <td>{$userinfo->kemu}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>执教班级</td>
-                                        <td colspan="3">{$userinfo->class}</td>
-                                        
+                                        <td>班级</td>
+                                        <td colspan="3">{$userinfo['class']}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -273,62 +258,64 @@
                     <div class="col-lg-3">
                         <h2></h2>
                         <div class="table-responsive">
-                            <img src="/static/image/ROTK.jpg" width="" height="100%">
+                            <img src="http://{$Think.server.server_name}/{$userinfo['head_path']}" width="100%" height="100%">
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <h2>{$_SESSION['think']['uname']}</h2>
                         <div class="table-responsive">
+                            <div class="alert alert-warning">
+                                <strong>提示：</strong> 请您如实填写资料！
+                            </div>
                             <table class="table table-hover table-striped">
                                <form id="fix_put" method="post">
                                 <tbody>
                                     <tr>
                                         <td>身份证</td>
-                                        <td>{$userinfo->id_card}</td>
-                                        <td>教师证</td>
-                                        <td>{$userinfo->cid}</td>
+                                        <td>{$userinfo['id_card']}</td>
+                                        <td>真实姓名</td>
+                                        <td>{$userinfo['true_name']}</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
-                                        <td><input class="form-control" id="fix_phone" style="height:20px;width:150px;"></td>
-                                        <td>qq号</td>
-                                        <td><input class="form-control" id="fix_qq" style="height:20px;width:150px;"></td>
+                                        <td><input class="form-control" id="fix_phone" value ="{$userinfo['phone']}" style="height:20px;width:170px;"></td>
+                                        <td>Email</td>
+                                        <td><input class="form-control" id="fix_email" value ="{$userinfo['email']}" style="height:20px;width:170px;"></td>
                                     </tr>
                                     <tr>
                                         <td>住址街道</td>
-                                        <td><input class="form-control" id="fix_add" style="height:20px;width:150px;"></td>
+                                        <td><input class="form-control" id="fix_add" value ="{$userinfo['add']}" style="height:20px;width:170px;"></td>
                                         <td>详细地址</td>
-                                        <td><input class="form-control" id="fix_dizhi" style="height:20px;width:150px;"></td>
+                                        <td><input class="form-control" id="fix_dizhi" value ="{$userinfo['dizhi']}" style="height:20px;width:170px;"></td>
                                     </tr>
                                     <tr>
-                                        <td>学历</td>
-                                        <td>{$userinfo->xueli}</td>
-                                        <td>职称</td>
-                                        <td>{$userinfo->zhicheng}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>毕业院校</td>
-                                        <td>{$userinfo->biye}</td>
+                                        <td>所属院系</td>
+                                        <td><input class="form-control" id="fix_yuanxi" value ="{$userinfo['yuanxi']}" style="height:20px;width:170px;"></td>
                                         <td>专业</td>
-                                        <td>{$userinfo->zhuanye}</td>
+                                        <td><input class="form-control" id="fix_kemu" value ="{$userinfo['kemu']}" style="height:20px;width:170px;"></td>
                                     </tr>
                                     <tr>
-                                        <td>任职院系</td>
-                                        <td><input class="form-control" id="fix_xueyuan" style="height:20px;width:150px;"></td>
-                                        <td>执教科目</td>
-                                        <td><input class="form-control" id="fix_kemu" style="height:20px;width:150px;"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>执教班级</td>
-                                        <td colspan="3"><input class="form-control" id="fix_class" style="height:20px;width:300px;"></td>
+                                        <td>班级</td>
+                                        <td colspan="3"><input class="form-control" id="fix_class" value ="{$userinfo['class']}" style="height:20px;width:300px;"></td>
                                         
                                     </tr>
                                 </tbody>
                                 </form>
                             </table>
                             <div class="text-right col-lg-12" style="margin-left: -15px;">
-                                <a id="update_userinfo" class="col-lg-2"><input type="file"></a>
-                                <a id="update_userinfo" class="col-lg-6"><button type="submit" class="btn btn-default" id="push_data">提交更新</button></a>
+                                <a id="update_userinfo_file" class="col-lg-2">
+                                    <form action="/uploadHeadIcon" method="post" enctype="multipart/form-data">
+                                        <span class="col-lg-8" style="margin-top:-10px;">
+                                            <input id="head_img" type="file" name="head_icon">
+                                            <button type="submit" class="btn btn-default" id="head_icon">修改头像</button>
+                                        </span>
+                                    </form>
+                                </a>
+                                <span id="update_userinfo_button" class="col-lg-8" style="margin-top:-10px;">
+                                    <button type="submit" class="btn btn-default" id="push_data">提交更新</button>
+                                    <button type="submit" class="btn btn-default" id="return_data" style="margin-left:50px;">返回</button>
+                                </span>
+
                             </div>
                         </div>
                     </div>
@@ -336,250 +323,98 @@
                 <script>
                     $(function(){
                         $("#userinfo_fix").hide();
-                        $('#update_userinfo').click(function(){
+                        $('#update_userinfo').unbind('click').click(function(){
                             $("#userinfo_list").hide();
                             $("#userinfo_fix").show();
                         });
-                        $('#push_data').click(function(){
-                            $.ajax({
-                                cache: true,
-                                type: "POST",
-                                url:"http://fuck.io/index/userinfo/userinfo",
-                                data:{
-                                  "fix_phone":$("#fix_phone").val(),
-                                  "fix_qq":$("#fix_qq").val(), 
-                                  "fix_add":$("#fix_add").val(),
-                                  "fix_dizhi":$("#fix_dizhi").val(),
-                                  "fix_xueyuan":$("#fix_xueyuan").val(),
-                                  "fix_kemu":$("#fix_kemu").val(),
-                                  "fix_class":$("#fix_class").val(),                      
-                                },
-                                async: false,
-                                error: function(request) {
-                                    alert("Connection error");
-                                },
-                                success: function(result) {
-                                    //$("#commonLayout_appcreshi").parent().html(data);
-                                    //alert(result);
-                                    $("#userinfo_fix").hide();
-                                    $("#userinfo_show").show();
+                        $('#push_data').unbind('click').click(function(){
+                            var str = '';
+                            // 验证手机号      
+                            function isPhoneNo(phone) { 
+                             var pattern = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/; 
+                             return pattern.test(phone); 
+                            }      
+
+                            // 验证邮箱      
+                            function isEmail(email) { 
+                             var pattern = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/; 
+                             return pattern.test(email); 
+                            }    
+
+                            if ($.trim($('#fix_phone').val()).length == 0) { 
+                                str += '请输入手机号\n';
+                            } else {
+                                if(isPhoneNo($('#fix_phone').val()) == false) {
+                                str += '手机号码不正确\n';
                                 }
-                            });
+                            }
+
+                            if ($.trim($('#fix_email').val()).length == 0) { 
+                                str += '请输入邮箱号\n';
+                            } else {
+                                if(isEmail($('#fix_email').val()) == false) {
+                                str += '邮箱格式不正确\n';
+                                }
+                            }
+
+                            if ($.trim($('#fix_add').val()).length == 0) { 
+                                str += '请输入街道\n';
+                            }
+
+                            if ($.trim($('#fix_dizhi').val()).length == 0) { 
+                                str += '请输入详细地址\n';
+                            }
+
+                            if ($.trim($('#fix_yuanxi').val()).length == 0) { 
+                                str += '请输入院系\n';
+                            }
+
+                            if ($.trim($('#fix_kemu').val()).length == 0) { 
+                                str += '请输入专业\n';
+                            }
+
+                            if ($.trim($('#fix_class').val()).length == 0) { 
+                                str += '请输入班级\n';
+                            }
+
+                            if(str != '') {
+                                alert(str);
+                                return false;
+                            } else {
+                                var formData = new FormData();
+                                formData.append('file', $('#file')[0].files[0]);
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/stu/setProfile",
+                                    data:{
+                                      "phone":$("#fix_phone").val(),
+                                      "email":$("#fix_email").val(),
+                                      "add":$("#fix_add").val(),
+                                      "dizhi":$("#fix_dizhi").val(),
+                                      "yuanxi":$("#fix_yuanxi").val(),
+                                      "kemu":$("#fix_kemu").val(),
+                                      "class":$("#fix_class").val(),
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+                                        //var url = "http://fuck.io/teach/" + result + "/fixinfo";
+                                        //url = url.replace(/\"/g, ""); 
+                                    }
+                                });
+                                location.reload(false);
+                            }  
+                        });
+                        $('#return_data').unbind('click').click(function(){
+                            $("#userinfo_fix").hide();
+                            $("#userinfo_list").show();
                         });
                     });
                     
                 </script>
-                <div class="row">
-                    <div class="col-lg-6">
-
-                        <form role="form">
-
-                            <div class="form-group">
-                                <label>Text Input</label>
-                                <input class="form-control">
-                                <p class="help-block">Example block-level help text here.</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Text Input with Placeholder</label>
-                                <input class="form-control" placeholder="Enter text">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Static Control</label>
-                                <p class="form-control-static">email@example.com</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>File input</label>
-                                <input type="file">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Text area</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Checkboxes</label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 1
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 2
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="">Checkbox 3
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Inline Checkboxes</label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">1
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">2
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox">3
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Radio Buttons</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Inline Radio Buttons</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Selects</label>
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Multiple Selects</label>
-                                <select multiple class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
-
-                        </form>
-
-                    </div>
-                    <div class="col-lg-6">
-                        <h1>Disabled Form States</h1>
-
-                        <form role="form">
-
-                            <fieldset disabled>
-
-                                <div class="form-group">
-                                    <label for="disabledSelect">Disabled input</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="disabledSelect">Disabled select menu</label>
-                                    <select id="disabledSelect" class="form-control">
-                                        <option>Disabled select</option>
-                                    </select>
-                                </div>
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">Disabled Checkbox
-                                    </label>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Disabled Button</button>
-
-                            </fieldset>
-
-                        </form>
-
-                        <h1>Form Validation</h1>
-
-                        <form role="form">
-
-                            <div class="form-group has-success">
-                                <label class="control-label" for="inputSuccess">Input with success</label>
-                                <input type="text" class="form-control" id="inputSuccess">
-                            </div>
-
-                            <div class="form-group has-warning">
-                                <label class="control-label" for="inputWarning">Input with warning</label>
-                                <input type="text" class="form-control" id="inputWarning">
-                            </div>
-
-                            <div class="form-group has-error">
-                                <label class="control-label" for="inputError">Input with error</label>
-                                <input type="text" class="form-control" id="inputError">
-                            </div>
-
-                        </form>
-
-                        <h1>Input Groups</h1>
-
-                        <form role="form">
-
-                            <div class="form-group input-group">
-                                <span class="input-group-addon">@</span>
-                                <input type="text" class="form-control" placeholder="Username">
-                            </div>
-
-                            <div class="form-group input-group">
-                                <input type="text" class="form-control">
-                                <span class="input-group-addon">.00</span>
-                            </div>
-
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="fa fa-eur"></i></span>
-                                <input type="text" class="form-control" placeholder="Font Awesome Icon">
-                            </div>
-
-                            <div class="form-group input-group">
-                                <span class="input-group-addon">$</span>
-                                <input type="text" class="form-control">
-                                <span class="input-group-addon">.00</span>
-                            </div>
-
-                            <div class="form-group input-group">
-                                <input type="text" class="form-control">
-                                <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
-                            </div>
-
-                        </form>
-
-                        <p>For complete documentation, please visit <a href="http://getbootstrap.com/css/#forms">Bootstrap's Form Documentation</a>.</p>
-
-                    </div>
-                </div>
                 <!-- /.row -->
 
             </div>

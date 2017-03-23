@@ -19,6 +19,7 @@ return [
     ],
 
     'login'                 => 'index/auth/login',
+    'logout'                => 'index/auth/logout',
     'reg'                   => 'index/auth/reg',
     'signup'                => 'signup/signup',
     'signin'                => 'signin/signin',
@@ -29,5 +30,7 @@ return [
     'vst/[:func]'           => 'index/vst/index',
     'download/:fileNameUrl' => 'index/download/download',
     'upload'                => 'index/upload/upload',
+    'uploadMyHomework'      => 'index/upload/uploadMyHomework',
+    'uploadHeadIcon'        => 'index/upload/uploadHeadIcon',
     //'uploadtmp'             => 'admin/admin/index/initStu',
 ];

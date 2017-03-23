@@ -1,11 +1,13 @@
 <?php
 namespace app\admin\controller;
 
+use app\admin\model\Profile;
 use PHPExcel_IOFactory;
 use PHPExcel;
 use PHPExcel_Cell;
 use app\admin\model\User;
 use think\Controller;
+use think\Loader;
 
 class ImportExcel extends Controller
 {
@@ -34,17 +36,24 @@ class ImportExcel extends Controller
 
         //写入数据库
         unset($dataArr[1]);
+        $list = [];
         $user = new User;
         foreach($dataArr as $val){
             $list[] = [
-                'code'       => $val[0],
+                'code'      => $val[0],
                 'uname'     => $val[1],
                 'sex'       => $val[2],
                 'age'       => $val[3],
                 'role'      => $val[4],
                 'class'     => $val[5],
+                'true_name' => $val[6],
+                'id_card'   => $val[7],
+                'zhuanye'   => $val[8],
             ];
         }
-        $user->saveAll($list , false);
+        $result = $user->saveAll($list , false);
+
+        //添加用户详情信息
+        Loader::model('Profile')->setAllProfile($result);
     }
 }

@@ -21,16 +21,7 @@ class Admin extends Auth
         }
         return $this->fetch();
     }
-    //网站浏览/登录记录
-    public function Log()
-    {
 
-    }
-    //网站信息查看和设置
-    public function settings()
-    {
-
-    }
     //最新上传
     public function viewRes()
     {
@@ -38,7 +29,7 @@ class Admin extends Auth
         $data = $res->getRes();
         $this->assign('res' , $data);
 
-        return $this->fetch();
+        return $this->fetch('res');
     }
 
     //显示上传excel页面
@@ -55,30 +46,27 @@ class Admin extends Auth
         return $importExcel;
     }
 
-    //学生管理（对应教师管理）
+    //学生管理（教师管理）
     public function manage()
     {
-        $list = Loader::model('Profile')->getProfile();
-        $this->assign('list' , $list);
-        return $this->fetch();
+        $profile = Loader::model('Profile')->getProfile();
+        $this->assign('profile' , $profile);
+        return $this->fetch('manage');
     }
 
+    //执行修改
     public function domanage()
     {
-        if (! request()->isAjax()){
-            $this->error('Request Type Error');
-        }
+        $data = input('post.');
 
-        $request = request()->param();
-        $data = model('User')->$request['action']($request);
+        $result = Loader::model('Profile')->setAllProfile($data);
         return $data;
     }
 
-
     //对教师发送通知
-    public function sendMessage()
+    public function notice()
     {
-        return $this->fetch('announce');
+        return $this->fetch('notice');
     }
     //课程管理
     public function course()

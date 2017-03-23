@@ -46,6 +46,7 @@ class User extends Model
         return $this->hasMany('NoticeList' , 'uid');
     }
 
+    //查询指定用户信息
     public function getUser($id)
     {
         $result = User::get($id);
@@ -53,11 +54,19 @@ class User extends Model
         return $result;
     }
 
+    //查询助教信息
     public function charts($uid, $class, $type = '1')
     {   
         $user = User::get($uid);
         $user->zhujiao = $type;
         $user->save();
+    }
+
+    //查询所有用户信息
+    public function getAll()
+    {
+        $result = User::all();
+        return $result;
     }
 
 }

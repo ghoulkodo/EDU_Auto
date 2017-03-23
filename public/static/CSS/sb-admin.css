@@ -225,3 +225,24 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+.fa-thumbs-up-back {
+    background-color: #b52b27;
+}
+
+.mail-status {
+    position: absolute;
+    top: 12px;
+    right: 22px;
+    z-index: 2;
+    display: none;
+    width: 14px;
+    height: 14px;
+    color: #fff;
+    text-align: center;
+    background-image: -webkit-linear-gradient(#54a3ff, #006eed);
+    background-image: linear-gradient(#54a3ff, #006eed);
+    background-clip: padding-box;
+    border: 2px solid #24292e;
+    border-radius: 50%;
+}

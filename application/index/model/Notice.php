@@ -77,18 +77,51 @@ class Notice extends Model
         }
     }
 
-    //获取对我发送的通知内容
+    //获取未读的通知内容
     public function getNotices($uid)
     {
         $content = [];
         $user = User::get($uid);
-        //查询指定用户下的所有通知
+        //查询指定用户下的所有未读通知
         $nids = $user->notices()->where('status',0)->column('nid');
         foreach ($nids as $nid){
             //todo:返回的内容需要截取，需要增加处理类
             $content[] = Notice::get($nid);
         }
+        foreach ($content as $key => $obj){
+            $content[$key]->sender_id = User::get($content[$key]->sender_id)->uname;
+        }
         return $content;
+    }
+
+    //获取所有通知记录
+    public function getAllNotices($uid)
+    {
+        $content = [];
+        $user = User::get($uid);
+        //查询指定用户下的所有通知
+        $nids = $user->notices()->column('nid');
+        foreach ($nids as $nid){
+            $content[] = Notice::get($nid);
+        }
+        foreach ($content as $key => $obj){
+            $content[$key]->sender_id = User::get($content[$key]->sender_id)->uname;
+            $content[$key]->status = NoticeList::get(['nid'=>$content[$key]->nid,'uid'=>$uid])->status;
+        }
+        return $content;
+    }
+
+    //标记通知状态，$action(0,设为已读；1,设为未读)
+    public function setRead($action , $uid , $nid=null)
+    {
+        if (is_null($nid)){
+            $result = NoticeList::where('uid', $uid)
+                ->update(['status' => $action]);;
+        }else{
+            $result = NoticeList::where('uid', $uid)->where('nid' , $nid)
+                ->update(['status' => $action]);;
+        }
+        return $result;
     }
 
     public function delNtc()

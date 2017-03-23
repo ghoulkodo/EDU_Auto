@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://www.tp5.com/index/index/index">WTF University</a>
+                <a class="navbar-brand" href="http://{$Think.server.server_name}/stu">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -128,20 +128,17 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-gear"></i> 我的作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 退出</a>
                         </li>
                     </ul>
                 </li>
@@ -149,37 +146,28 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="http://www.tp5.com/index/index/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
-                    </li>
-                    <li>
-                        <a href="http://www.tp5.com/index/index/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
-                    </li>
-                    <li>
-                        <a href="http://www.tp5.com/index/index/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
-                    </li>
-                    <li>
-                        <a href="http://www.tp5.com/index/index/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
-                    </li>
-                    <li>
-                        <a href="http://www.tp5.com/index/index/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
-                    </li>
-                    <li>
-                        <a href="http://www.tp5.com/index/index/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="active">
-                        <a href="http://www.tp5.com/index/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+
+                        <a href="http://{$Think.server.server_name}/stu/index"><i class="fa fa-fw fa-dashboard"></i> 我的首页</a>
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 作业历史</a>
+
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-table"></i> 当前作业</a>
                     </li>
                 </ul>
             </div>

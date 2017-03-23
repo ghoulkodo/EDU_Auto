@@ -227,10 +227,11 @@ class Teach extends Common
         
     }
 
+
     public function setProfile()
     {
         $sdata = input('post.');
-        
+
         $data = Loader::model('Profile')->getProfile($_SESSION['think']['uid']);
 
         dump($data['pid']);
@@ -240,6 +241,14 @@ class Teach extends Common
             $data = Request::instance()->post();
             Loader::model('Profile')->setProfile($sdata);
         }
+    }
+
+    public function upload()
+    {
+        $data = Loader::model('Res')->getRes();
+        $this->assign('res' , $data);
+        return $this->fetch('upload');
+
     }
 	
     public function forms()

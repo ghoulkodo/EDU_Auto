@@ -45,7 +45,8 @@ class Auth extends Controller
     //登录
     public function login()
     {
-        self::logout();
+        Cookie::delete('uname');
+        Session::clear();
         $loginData = input('post.');
 
         $data = [
@@ -88,5 +89,6 @@ class Auth extends Controller
     {
         Cookie::delete('uname');
         Session::clear();
+        $this->success('Log Out Success');
     }
 }
