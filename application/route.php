@@ -20,8 +20,8 @@ return [
 
     'login'                 => 'index/auth/login',
     'reg'                   => 'index/auth/reg',
-    'signup'                => 'signup/signup',
-    'signin'                => 'signin/signin',
+    'signup'                => 'index/signup/signup',
+    'signin'                => 'index/signin/signin',
     'stu/[:func]'           => 'index/stu/index',
     'teach/[:func]'         => 'index/teach/index',
     'assis/[:func]'         => 'index/assis/index',
